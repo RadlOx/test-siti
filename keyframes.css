@@ -1,0 +1,22 @@
+@keyframes floated {
+    0% {
+        transform: translateY(14px);
+    }
+    50% {
+        transform: translateY(4px);
+    }
+    100%{
+        transform: translateY(14px);
+    }
+}
+@keyframes floated2 {
+    0% {
+        transform: rotate(180deg)translateY(14px);
+    }
+    50% {
+        transform: rotate(180deg)translateY(4px);
+    }
+    100% {
+        transform: rotate(180deg)translateY(14px);
+    }
+}
