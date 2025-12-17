@@ -99,7 +99,7 @@ img {
 
 #btn1 {
     width:auto;
-    border-left: 10px solid rgba(255, 51, 0, 0.288);
+    border-left: 20px solid rgba(255, 51, 0, 0.288);
     height: 50px;
     background-color: #640a0a63;
     position: absolute;
@@ -108,8 +108,7 @@ img {
     left:20%;
     text-decoration: none;
     color: aliceblue;
-    padding: 20px 20px;
-    border:1px solid rgba(219, 219, 219, 0.274);
+    padding: 20px 20px 20px 7px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,12 +125,12 @@ img {
     background-image: linear-gradient(45deg, #6e06065d, #ce700686, #c1c27879);
     position: absolute;
     top: 80%;
-    border:1px solid rgba(231, 231, 231, 0.37);
+    border-left: 20px solid rgba(255, 51, 0, 0.288);
     box-shadow: 0 0 100px rgb(241, 180, 11);
     left:20%;
     text-decoration: none;
     color: aliceblue;
-    padding: 20px 20px;
+    padding: 20px 20px 20px 7px;
     display: flex;
     align-items: center;
     transform: translateY(400%);
