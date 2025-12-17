@@ -7,6 +7,7 @@ const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
 const container = document.getElementById("container");
 const frutto1 = document.getElementById("frutto1");
+const frutto2 = document.getElementById("frutto2");
 
 
 // Transizioni fluide
@@ -32,6 +33,8 @@ function applyEffects(delta) {
     btn2.style.transform = "translateY(0)";
     container.style.backgroundImage = "linear-gradient(45deg, #0baf99ff, #e26d2aff, rgba(202, 206, 1, 1))";
     frutto1.style.transform = "translateX(0) rotate(40deg)";
+    frutto2.style.transform = "translateX(300%) rotate(1deg)";
+
     
   } else if (delta < -THRESHOLD) {
     // SCROLL UP
@@ -42,6 +45,8 @@ function applyEffects(delta) {
     btn2.style.transform = "translateY(400%)";
     container.style.backgroundImage = "linear-gradient(45deg, #6e0606, #943636, #c1c278)";
     frutto1.style.transform = "translateX(-200%)";
+    frutto2.style.transform = "translateX(0%) rotate(45deg)";
+
   }
 }
 
@@ -57,6 +62,6 @@ window.addEventListener("touchstart", (e) => {
 
 window.addEventListener("touchmove", (e) => {
   const currentY = e.touches[0].clientY;
-  const delta = touchStartY - currentY;
+  const delta =- touchStartY - currentY;
   applyEffects(delta);
 }, { passive: true });
