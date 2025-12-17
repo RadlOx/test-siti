@@ -33,7 +33,7 @@ function applyEffects(delta) {
     btn2.style.transform = "translateY(0)";
     container.style.backgroundImage = "linear-gradient(45deg, #0baf99ff, #e26d2aff, rgba(202, 206, 1, 1))";
     frutto1.style.transform = "translateX(0) rotate(40deg)";
-    frutto2.style.transform = "translateX(300%) rotate(1deg)";
+    frutto2.style.transform = "translateX(-300%) rotate(1deg)";
 
     
   } else if (delta < -THRESHOLD) {
