@@ -22,7 +22,7 @@ body,html  {
     overflow: hidden;
     touch-action: none;
     background-image: 
-    linear-gradient(45deg, #6e0606, #943636, #c1c278);
+    linear-gradient(45deg, #c20e0e, #943636, #dfe236);
 }
 #h1-1 {
     font-family: "Bebas Neue", "Inter", sans-serif;
@@ -83,8 +83,7 @@ body,html  {
 img {
     width: 300px;
     z-index: 999;
-    filter: drop-shadow(0px 0px 28px #00000086); /* Ombra alla sagoma dell'immagine */
-    
+    filter: drop-shadow(0px 0px 28px #00000086); /* Ombra alla sagoma dell'immagine */   
 }
 #img1 {
     position: absolute;
@@ -117,7 +116,7 @@ img {
     align-items: center;
     justify-content: center;
     border-radius: 14PX;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: all 1s;
     z-index: 99;
 }
@@ -141,50 +140,59 @@ img {
     transform: translateY(400%);
     justify-content: center;
     border-radius: 14px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     transition: all 1s;
     z-index: 99;
 }
 #btn2 i {
     margin: 0 10px;
 }
-#frutto1 {
-    
-    position: absolute;
-    width: 200px;
-    top: 370px;
-    z-index: 10;
-    left: 30px;
-    transform: translateX(-200%);
-    transition: all 1s;
-}
-#frutto2 {
+#fico2 {  /* FRUTTO PRIMA SCHERMATA */
     position: absolute;
     width: 150px;
-    top: 360px;
+    top: 370px;
     z-index: 999;
-    right: 50px;
-    transform: translateX(0%) rotate(45deg);
+    right: 70px;
+    transform: translateX(0%) rotate(0deg);
+    transition: all 1s;
+    z-index: 10;
+}
+#fragola1 {
+    position: absolute;
+    width: 100px;
+    top: 400px;
+    z-index: 999;
+    left: 80px;
+    transform: translateX(0%) rotate(-25deg);
     transition: all 1s;
     z-index: 10;
 }
 #foglia1 {
     position: absolute;
-    width: 100px;
-    top:10%;
+    width: 130px;
+    top:14%;
     z-index: 1;
-    left: 10px;
-    transform: translateX(0%) rotate(5deg);
+    left: -10px;
+    transform: translateX(0%) rotate(40deg);
     filter: blur(3px);
     transition: all 1s;
 }
 #foglia2 {
     position: absolute;
-    width: 100px;
-    top: 85%;
-    z-index: 1;
-    right: 100px;
-    transform: translateX(0%) rotate(240deg);
-    filter: blur(3px);
+    width: 70px;
+    top: 28%;
+    z-index: 1111;
+    right: 20px;
+    transform: translateX(0%) rotate(310deg);
+    filter: blur(1px);
+    transition: all 1s;
+}
+#fico1 {  /* FRUTTO SECONDA SCHERMATA */
+    position: absolute;
+    width: 150px;
+    top: 340px;
+    z-index: 10;
+    left: 30px;
+    transform: translateX(-200%);
     transition: all 1s;
 }

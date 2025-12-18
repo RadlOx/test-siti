@@ -4,10 +4,11 @@ const h1_1 = document.getElementById("h1-1");
 const h1_2 = document.getElementById("h1-2");
 const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
-const frutto1 = document.getElementById("frutto1");
-const frutto2 = document.getElementById("frutto2");
+const frutto1 = document.getElementById("fico1");
+const frutto2 = document.getElementById("fico2");
 const frutto3 = document.getElementById("foglia1");
 const frutto4 = document.getElementById("foglia2");
+const fragola1 = document.getElementById("fragola1");
 
 // ==========================
 // TRANSIZIONI
@@ -47,10 +48,10 @@ function goDown() {
   container.style.backgroundImage =
     "linear-gradient(45deg, #0baf99, #e26d2a, #cace01)";
   frutto1.style.transform = "translateX(0) rotate(40deg)";
-  frutto2.style.transform = "translateX(300%) rotate(1deg)";
+  frutto2.style.transform = "translateX(300%) rotate(71deg)";
   frutto3.style.transform = "translateX(-300%) rotate(1deg)";
-  frutto4.style.transform = "translateY(0%) rotate(90deg)";
-  frutto4.style.transform = "translateY(300%) rotate(60deg)";
+  frutto4.style.transform = "translateX(300%) rotate(0deg)";
+  fragola1.style.transform = "translateX(-400%) rotate(0deg)";
 
   setTimeout(() => (isAnimating = false), 900);
 }
@@ -66,11 +67,13 @@ function goUp() {
   btn1.style.transform = "translateX(0)";
   btn2.style.transform = "translateY(400%)";
   container.style.backgroundImage =
-    "linear-gradient(45deg, #6e0606, #943636, #c1c278)";
+    "linear-gradient(45deg, #c20e0e, #943636, #dfe236)";
   frutto1.style.transform = "translateX(-200%)";
-  frutto2.style.transform = "translateX(0) rotate(45deg)";
-  frutto3.style.transform = "translateX(0) rotate(1deg)";
-  frutto4.style.transform = "translateY(0%) rotate(240deg)";
+  frutto2.style.transform = "translateX(0) rotate(1deg)";
+  frutto3.style.transform = "translateX(0) rotate(40deg)";
+  frutto4.style.transform = "translateX(0%) rotate(310deg)";
+  fragola1.style.transform = "translateX(0%) rotate(-25deg)";
+
 
 
   setTimeout(() => (isAnimating = false), 900);
