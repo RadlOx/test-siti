@@ -6,6 +6,8 @@ const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
 const frutto1 = document.getElementById("frutto1");
 const frutto2 = document.getElementById("frutto2");
+const frutto3 = document.getElementById("foglia1");
+const frutto4 = document.getElementById("foglia2");
 
 // ==========================
 // TRANSIZIONI
@@ -46,6 +48,9 @@ function goDown() {
     "linear-gradient(45deg, #0baf99, #e26d2a, #cace01)";
   frutto1.style.transform = "translateX(0) rotate(40deg)";
   frutto2.style.transform = "translateX(300%) rotate(1deg)";
+  frutto3.style.transform = "translateX(-300%) rotate(1deg)";
+  frutto4.style.transform = "translateY(0%) rotate(90deg)";
+  frutto4.style.transform = "translateY(300%) rotate(60deg)";
 
   setTimeout(() => (isAnimating = false), 900);
 }
@@ -64,6 +69,9 @@ function goUp() {
     "linear-gradient(45deg, #6e0606, #943636, #c1c278)";
   frutto1.style.transform = "translateX(-200%)";
   frutto2.style.transform = "translateX(0) rotate(45deg)";
+  frutto3.style.transform = "translateX(0) rotate(1deg)";
+  frutto4.style.transform = "translateY(0%) rotate(240deg)";
+
 
   setTimeout(() => (isAnimating = false), 900);
 }
