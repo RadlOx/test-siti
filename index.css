@@ -8,21 +8,49 @@ body::-webkit-scrollbar {
     display: none;
 }
 
-body,html  {
+body  {
     max-width: 100%;
-    max-height: 100vh;
+    max-height: 200vh;
     touch-action: manipulation;
     background-color: black;
     overflow : hidden;
     font-family: sans-serif;
+}
+#container1 {
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(45deg, #6e06065d, #ce700686, #c1c27879);
+}
+#container1 a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: #943636;
 }
 #container {
     width: 100%;
     height: 100vh;
     overflow: hidden;
     touch-action: none;
+    position: relative;
     background-image: 
     linear-gradient(45deg, #c20e0e, #943636, #dfe236);
+}
+#container #icon-up {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    z-index: 999;
+}
+#icon-up a {
+    text-decoration: none;
+    color: #272727;
+}
+#icon-up a i {
+    background-color: #ffffff3b;
+    border-radius: 0 0 100% 100%;
+    padding: 10px 20px;
 }
 #h1-1 {
     font-family: "Bebas Neue", "Inter", sans-serif;
@@ -33,7 +61,7 @@ body,html  {
     white-space: nowrap;
     pointer-events: none;
     position: absolute;
-    top: 40px;
+    top: 60px;
     left: 40px;
     transform: translateX(0);
     display: flex;
@@ -48,7 +76,7 @@ body,html  {
 #h1-2 {
     font-size: 5rem;
     position: absolute;
-    top: 40px;
+    top: 60px;
     transform: translateX(-110%);
     left: 35px;
     font-family: "Bebas Neue", "Inter", sans-serif;
@@ -87,14 +115,14 @@ img {
 }
 #img1 {
     position: absolute;
-    top: 100px;
+    top: 120px;
     left: 50px;
     animation: floated 2s infinite ease-in-out;
 
 }
 #img2 {
     position: absolute;
-    bottom: 90px;
+    bottom: 110px;
     right: 60px;
     transform: rotate(180deg);
     animation: floated2 2s infinite ease-in-out;
@@ -150,22 +178,24 @@ img {
 #fico2 {  /* FRUTTO PRIMA SCHERMATA */
     position: absolute;
     width: 150px;
-    top: 370px;
+    top: 400px;
     z-index: 999;
-    right: 70px;
+    left:200px;
     transform: translateX(0%) rotate(0deg);
     transition: all 1s;
     z-index: 10;
+    filter: blur(0.5px);
 }
 #fragola1 {
     position: absolute;
     width: 100px;
-    top: 400px;
+    top: 300px;
     z-index: 999;
-    left: 80px;
+    left: 60px;
+    filter: blur(0.5px);
     transform: translateX(0%) rotate(-25deg);
     transition: all 1s;
-    z-index: 10;
+    z-index: 9;
 }
 #foglia1 {
     position: absolute;
@@ -180,9 +210,9 @@ img {
 #foglia2 {
     position: absolute;
     width: 70px;
-    top: 28%;
+    top: 30%;
     z-index: 1111;
-    right: 20px;
+    left: 320px;
     transform: translateX(0%) rotate(310deg);
     filter: blur(1px);
     transition: all 1s;

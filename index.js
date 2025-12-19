@@ -9,6 +9,7 @@ const frutto2 = document.getElementById("fico2");
 const frutto3 = document.getElementById("foglia1");
 const frutto4 = document.getElementById("foglia2");
 const fragola1 = document.getElementById("fragola1");
+const body = document.body;
 
 // ==========================
 // TRANSIZIONI
@@ -51,7 +52,7 @@ function goDown() {
   frutto2.style.transform = "translateX(300%) rotate(71deg)";
   frutto3.style.transform = "translateX(-300%) rotate(1deg)";
   frutto4.style.transform = "translateX(300%) rotate(0deg)";
-  fragola1.style.transform = "translateX(-400%) rotate(0deg)";
+  fragola1.style.transform = "translateX(500%) rotate(0deg)";
 
   setTimeout(() => (isAnimating = false), 900);
 }
@@ -73,8 +74,6 @@ function goUp() {
   frutto3.style.transform = "translateX(0) rotate(40deg)";
   frutto4.style.transform = "translateX(0%) rotate(310deg)";
   fragola1.style.transform = "translateX(0%) rotate(-25deg)";
-
-
 
   setTimeout(() => (isAnimating = false), 900);
 }
