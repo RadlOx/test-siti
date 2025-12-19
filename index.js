@@ -1,3 +1,4 @@
+// ELEMENTI
 const container = document.getElementById("container");
 const rotateContainer = document.getElementById("rotate-container");
 const h1_1 = document.getElementById("h1-1");
@@ -9,103 +10,128 @@ const frutto2 = document.getElementById("fico2");
 const frutto3 = document.getElementById("foglia1");
 const frutto4 = document.getElementById("foglia2");
 const fragola1 = document.getElementById("fragola1");
-const body = document.body;
+const img1 = document.getElementById("img1");
 
-// ==========================
-// TRANSIZIONI
-// ==========================
-const ease = "cubic-bezier(.77,0,.18,1)";
-[
-  rotateContainer,
-  h1_1,
-  h1_2,
-  btn1,
-  btn2,
-  frutto1,
-  frutto2
-].forEach(el => {
-  el.style.transition = `transform 0.9s ${ease}`;
-});
+const btnIcon = btn1.querySelector("i");
+const btnText = btn1.querySelector(".btn-text");
+const originalBtnText = btnText.textContent;
 
-// ==========================
-// STATO
-// ==========================
 let currentSlide = 0;
 let isAnimating = false;
+let isReadingMode = false;
+let isBtnBlocked = false;
 
-// ==========================
-// FUNZIONI
-// ==========================
-function goDown() {
-  if (currentSlide === 1 || isAnimating) return;
-  isAnimating = true;
-  currentSlide = 1;
-
-  rotateContainer.style.transform = "rotate(180deg)";
-  h1_1.style.transform = "translateX(-200%)";
-  h1_2.style.transform = "translateX(0)";
-  btn1.style.transform = "translateX(-400%)";
-  btn2.style.transform = "translateY(0)";
-  container.style.backgroundImage =
-    "linear-gradient(45deg, #0baf99, #e26d2a, #cace01)";
-  frutto1.style.transform = "translateX(0) rotate(40deg)";
-  frutto2.style.transform = "translateX(300%) rotate(71deg)";
-  frutto3.style.transform = "translateX(-300%) rotate(1deg)";
-  frutto4.style.transform = "translateX(300%) rotate(0deg)";
-  fragola1.style.transform = "translateX(500%) rotate(0deg)";
-
-  setTimeout(() => (isAnimating = false), 900);
+// TRANSIZIONI
+[h1_1,h1_2,btn1,btn2,frutto1,frutto2,frutto3,frutto4,fragola1,rotateContainer].forEach(el=>{
+  if(!el) return;
+  el.style.transition = "transform 0.9s cubic-bezier(.77,0,.18,1)";
+});
+if(img1){
+  img1.style.transition = "transform 1s ease"; // transizione morbida
+  img1.style.transformOrigin = "center center";
+}
+if(btnIcon){
+  btnIcon.style.transition = "transform 0.4s ease";
+  btnIcon.style.display="inline-block";
 }
 
-function goUp() {
-  if (currentSlide === 0 || isAnimating) return;
-  isAnimating = true;
-  currentSlide = 0;
-
-  rotateContainer.style.transform = "rotate(0deg)";
-  h1_1.style.transform = "translateX(0)";
-  h1_2.style.transform = "translateX(-200%)";
-  btn1.style.transform = "translateX(0)";
-  btn2.style.transform = "translateY(400%)";
-  container.style.backgroundImage =
-    "linear-gradient(45deg, #c20e0e, #943636, #dfe236)";
-  frutto1.style.transform = "translateX(-200%)";
-  frutto2.style.transform = "translateX(0) rotate(1deg)";
-  frutto3.style.transform = "translateX(0) rotate(40deg)";
-  frutto4.style.transform = "translateX(0%) rotate(310deg)";
-  fragola1.style.transform = "translateX(0%) rotate(-25deg)";
-
-  setTimeout(() => (isAnimating = false), 900);
+// FUNZIONI SLIDE
+function goDown(){
+  if(currentSlide===1||isAnimating||isReadingMode) return; 
+  isAnimating=true; 
+  currentSlide=1;
+  rotateContainer.style.transform="rotate(180deg)";
+  h1_1.style.transform="translateX(-200%)";
+  h1_2.style.transform="translateX(0)";
+  btn1.style.transform="translateX(-400%)";
+  btn2.style.transform="translateY(0)";
+  container.style.backgroundImage="linear-gradient(45deg, #0baf99, #e26d2a, #cace01)";
+  frutto1.style.transform="translateX(0) rotate(40deg)";
+  frutto2.style.transform="translateX(300%) rotate(71deg)";
+  frutto3.style.transform="translateX(-300%) rotate(1deg)";
+  frutto4.style.transform="translateX(300%) rotate(0deg)";
+  fragola1.style.transform="translateX(500%) rotate(0deg)";
+  setTimeout(()=>isAnimating=false,900);
+}
+function goUp(){
+  if(currentSlide===0||isAnimating||isReadingMode) return; 
+  isAnimating=true; 
+  currentSlide=0;
+  rotateContainer.style.transform="rotate(0deg)";
+  h1_1.style.transform="translateX(0)";
+  h1_2.style.transform="translateX(-200%)";
+  btn1.style.transform="translateX(0)";
+  btn2.style.transform="translateY(400%)";
+  container.style.backgroundImage="linear-gradient(45deg, #c20e0e, #943636, #dfe236)";
+  frutto1.style.transform="translateX(-200%)";
+  frutto2.style.transform="translateX(0) rotate(1deg)";
+  frutto3.style.transform="translateX(0) rotate(40deg)";
+  frutto4.style.transform="translateX(0%) rotate(310deg)";
+  fragola1.style.transform="translateX(0%) rotate(-25deg)";
+  setTimeout(()=>isAnimating=false,900);
 }
 
-// ==========================
-// DESKTOP
-// ==========================
-container.addEventListener("wheel", e => {
-  if (isAnimating) return;
-  if (e.deltaY > 20) goDown();
-  if (e.deltaY < -20) goUp();
-}, { passive: true });
+// TOGGLE LETTURA / SCOPRI
+function toggleReadingMode(){
+  if(isBtnBlocked) return;
+  isBtnBlocked=true;
+  setTimeout(()=>{isBtnBlocked=false},1000); // blocco 1s tra click
 
-// ==========================
-// MOBILE – SWIPE MANUALE
-// ==========================
-let startY = 0;
+  const toHide=[h1_1,h1_2,frutto1,frutto2,frutto3,frutto4,fragola1];
 
-container.addEventListener("touchstart", e => {
-  startY = e.touches[0].clientY;
-}, { passive: false });
+  if(!isReadingMode){
+    // entra in modalità lettura
+    isReadingMode=true;
+    toHide.forEach(el=>{
+      if(!el) return;
+      el.style.transition+=" , opacity 0.4s ease";
+      el.style.opacity="0";
+      setTimeout(()=>el.style.display="none",400);
+    });
+    if(img1){
+      img1.style.animation = "none";   // stop animazione flottante
+      img1.style.transform = "scale(0.7)"; // riduzione armoniosa
+    }
+    if(btnText) btnText.textContent="Torna ai prodotti";
+    if(btnIcon) btnIcon.style.transform="rotate(180deg)";
+  } else {
+    // torna ai prodotti
+    isReadingMode=false;
+    toHide.forEach(el=>{
+      if(!el) return;
+      el.style.display="flex";
+      requestAnimationFrame(()=>el.style.opacity="1");
+    });
+    if(img1){
+      img1.style.transform = "scale(1)";      // ritorno a dimensione originale
+      img1.style.animation = "floated 2s infinite ease-in-out"; // riattiva animazione
+    }
+    if(btnText) btnText.textContent=originalBtnText;
+    if(btnIcon) btnIcon.style.transform="rotate(0deg)";
+  }
+}
 
-container.addEventListener("touchmove", e => {
-  e.preventDefault(); // 🔥 CHIAVE ASSOLUTA
-}, { passive: false });
+// EVENT CLICK
+btn1.addEventListener("click",e=>{
+  e.preventDefault();
+  toggleReadingMode();
+});
 
-container.addEventListener("touchend", e => {
-  if (isAnimating) return;
+// SCROLL
+container.addEventListener("wheel",e=>{
+  if(isAnimating||isReadingMode) return;
+  if(e.deltaY>20) goDown();
+  if(e.deltaY<-20) goUp();
+},{passive:true});
 
-  const endY = e.changedTouches[0].clientY;
-  const delta = startY - endY;
-
-  if (delta > 50) goDown();
-  if (delta < -50) goUp();
-}, { passive: false });
+// TOUCH SWIPE
+let startY=0;
+container.addEventListener("touchstart",e=>{startY=e.touches[0].clientY},{passive:false});
+container.addEventListener("touchmove",e=>{if(isReadingMode)e.preventDefault()},{passive:false});
+container.addEventListener("touchend",e=>{
+  if(isAnimating||isReadingMode) return;
+  const endY=e.changedTouches[0].clientY;
+  const delta=startY-endY;
+  if(delta>50) goDown();
+  if(delta<-50) goUp();
+},{passive:false});

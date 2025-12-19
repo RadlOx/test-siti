@@ -4,38 +4,40 @@
     box-sizing: border-box;
     user-select: none;
 }
-body::-webkit-scrollbar {
-    display: none;
-}
 
-body  {
+body::-webkit-scrollbar { display: none; }
+
+body {
     max-width: 100%;
     max-height: 200vh;
     touch-action: manipulation;
     background-color: black;
-    overflow : hidden;
+    overflow: hidden;
     font-family: sans-serif;
 }
+
 #container1 {
     height: 100vh;
     width: 100%;
     background-image: linear-gradient(45deg, #6e06065d, #ce700686, #c1c27879);
 }
+
 #container1 a {
     font-size: 2rem;
     text-decoration: none;
     color: #943636;
 }
+
 #container {
     width: 100%;
     height: 100vh;
     overflow: hidden;
     touch-action: none;
     position: relative;
-    background-image: 
-    linear-gradient(45deg, #c20e0e, #943636, #dfe236);
+    background-image: linear-gradient(45deg, #c20e0e, #943636, #dfe236);
 }
-#container #icon-up {
+
+#icon-up {
     position: absolute;
     width: 100%;
     display: flex;
@@ -43,16 +45,20 @@ body  {
     justify-content: center;
     z-index: 999;
 }
+
 #icon-up a {
     text-decoration: none;
     color: #272727;
 }
+
 #icon-up a i {
     background-color: #ffffff3b;
     border-radius: 0 0 100% 100%;
     padding: 10px 20px;
 }
-#h1-1 {
+
+/* H1 */
+#h1-1, #h1-2 {
     font-family: "Bebas Neue", "Inter", sans-serif;
     font-size: clamp(7rem, 10vw, 8rem);
     letter-spacing: 0.08em;
@@ -62,39 +68,19 @@ body  {
     pointer-events: none;
     position: absolute;
     top: 60px;
-    left: 40px;
-    transform: translateX(0);
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 9;
     line-height: 100px;
 }
-#h1-1 span {
-    color: aliceblue;
-}
-#h1-2 {
-    font-size: 5rem;
-    position: absolute;
-    top: 60px;
-    transform: translateX(-110%);
-    left: 35px;
-    font-family: "Bebas Neue", "Inter", sans-serif;
-    font-size: clamp(7rem, 10vw, 8rem);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #111;
-    white-space: nowrap;
-    pointer-events: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 9;
-    line-height: 100px;
-}
-#h1-2 span {
-    color: aliceblue;
-}
+
+#h1-1 { left: 40px; transform: translateX(0); }
+#h1-2 { left: 35px; transform: translateX(-110%); }
+
+#h1-1 span, #h1-2 span { color: aliceblue; }
+
+/* Rotate Container */
 #rotate-container {
     position: relative;
     width: 300%;
@@ -107,19 +93,22 @@ body  {
     z-index: 9;
 }
 
-
+/* Immagini */
 img {
     width: 300px;
     z-index: 999;
-    filter: drop-shadow(0px 0px 28px #00000086); /* Ombra alla sagoma dell'immagine */   
+    filter: drop-shadow(0px 0px 28px #00000086);
 }
+
 #img1 {
     position: absolute;
     top: 120px;
     left: 50px;
     animation: floated 2s infinite ease-in-out;
-
+    transition: transform 1s ease; /* <-- transizione più morbida */
+    transform-origin: center center;
 }
+
 #img2 {
     position: absolute;
     bottom: 110px;
@@ -128,101 +117,51 @@ img {
     animation: floated2 2s infinite ease-in-out;
 }
 
-#btn1 {
-    width:auto;
-    border-left: 20px solid rgba(255, 51, 0, 0.288);
+/* Bottoni */
+#btn1, #btn2 {
+    width: auto;
     height: 50px;
-    background-color: #640a0a63;
     position: absolute;
-    top: 80%;
-    box-shadow: 0 0 100px rgba(241, 19, 11, 0.733);
-    left:20%;
-    text-decoration: none;
-    color: aliceblue;
     padding: 20px 20px 20px 7px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-radius: 14PX;
-    font-size: 1rem;
-    transition: all 1s;
-    z-index: 99;
-}
-#btn1 i {
-    margin: 0 10px;
-}
-#btn2 {
-    width:auto;
-    height: 50px;
-    background-image: linear-gradient(45deg, #6e06065d, #ce700686, #c1c27879);
-    position: absolute;
-    top: 80%;
-    border-left: 20px solid rgba(255, 51, 0, 0.288);
-    box-shadow: 0 0 100px rgb(241, 180, 11);
-    left:20%;
-    text-decoration: none;
-    color: aliceblue;
-    padding: 20px 20px 20px 7px;
-    display: flex;
-    align-items: center;
-    transform: translateY(400%);
     justify-content: center;
     border-radius: 14px;
     font-size: 1rem;
     transition: all 1s;
     z-index: 99;
 }
-#btn2 i {
+
+#btn1 {
+    background-color: #640a0a63;
+    top: 80%;
+    left: 30%;
+    box-shadow: 0 0 100px rgba(241, 19, 11, 0.733);
+}
+
+#btn1 i {
     margin: 0 10px;
+    transition: transform 0.4s ease;
+    display: inline-block;
 }
-#fico2 {  /* FRUTTO PRIMA SCHERMATA */
-    position: absolute;
-    width: 150px;
-    top: 400px;
-    z-index: 999;
-    left:200px;
-    transform: translateX(0%) rotate(0deg);
-    transition: all 1s;
-    z-index: 10;
-    filter: blur(0.5px);
+
+#btn2 {
+    background-image: linear-gradient(45deg, #6e06065d, #ce700686, #c1c27879);
+    top: 80%;
+    left: 20%;
+    border-left: 20px solid rgba(255, 51, 0, 0.288);
+    box-shadow: 0 0 100px rgb(241, 180, 11);
+    transform: translateY(400%);
 }
-#fragola1 {
+
+/* Frutti */
+#fico1, #fico2, #fragola1, #foglia1, #foglia2 {
     position: absolute;
-    width: 100px;
-    top: 300px;
-    z-index: 999;
-    left: 60px;
-    filter: blur(0.5px);
-    transform: translateX(0%) rotate(-25deg);
-    transition: all 1s;
-    z-index: 9;
-}
-#foglia1 {
-    position: absolute;
-    width: 130px;
-    top:14%;
-    z-index: 1;
-    left: -10px;
-    transform: translateX(0%) rotate(40deg);
-    filter: blur(3px);
     transition: all 1s;
 }
-#foglia2 {
-    position: absolute;
-    width: 70px;
-    top: 30%;
-    z-index: 1111;
-    left: 320px;
-    transform: translateX(0%) rotate(310deg);
-    filter: blur(1px);
-    transition: all 1s;
-}
-#fico1 {  /* FRUTTO SECONDA SCHERMATA */
-    position: absolute;
-    width: 150px;
-    top: 340px;
-    z-index: 10;
-    left: 30px;
-    transform: translateX(-200%);
-    transition: all 1s;
-}
+
+#fico2 { width: 150px; top: 400px; left: 200px; transform: translateX(0%) rotate(0deg); z-index: 10; filter: blur(0.5px);}
+#fragola1 { width: 100px; top: 300px; left: 60px; transform: translateX(0%) rotate(-25deg); z-index: 9; filter: blur(0.5px);}
+#foglia1 { width: 130px; top:14%; left:-10px; transform: translateX(0%) rotate(40deg); filter: blur(3px); z-index:1;}
+#foglia2 { width: 70px; top:30%; left:320px; transform: translateX(0%) rotate(310deg); filter: blur(1px); z-index:1111;}
+#fico1 { width:150px; top:340px; left:30px; transform: translateX(-200%); z-index:10;}
