@@ -13,10 +13,7 @@ const frutto3 = document.getElementById("foglia1");
 const frutto4 = document.getElementById("foglia2");
 const fragola1 = document.getElementById("fragola1");
 const img1 = document.getElementById("img1");
-
-const btnIcon = btn1.querySelector("i");
-const btnText = btn1.querySelector(".btn-text");
-const originalBtnText = btnText.textContent;
+const closeIcon = document.getElementById("icon-close");
 
 let currentSlide = 0;
 let isAnimating = false;
@@ -24,17 +21,13 @@ let isReadingMode = false;
 let isBtnBlocked = false;
 
 // TRANSIZIONI
-[h1_1,h1_2,btn1,btn2,frutto1,frutto2,frutto3,frutto4,fragola1,rotateContainer, infoCont].forEach(el=>{
+[h1_1,h1_2,btn1,btn2,frutto1,frutto2,frutto3,frutto4,fragola1,rotateContainer, infoCont, coverInfo].forEach(el=>{
   if(!el) return;
   el.style.transition = "transform 0.9s cubic-bezier(.77,0,.18,1)";
 });
 if(img1){
-  img1.style.transition = "transform 1s ease";
+  img1.style.transition = "transform 1s cubic-bezier(.77,0,.18,1)";
   img1.style.transformOrigin = "center center";
-}
-if(btnIcon){
-  btnIcon.style.transition = "transform 0.4s ease";
-  btnIcon.style.display="inline-block";
 }
 
 // FUNZIONI SLIDE
@@ -55,6 +48,7 @@ function goDown(){
   fragola1.style.transform="translateX(500%) rotate(0deg)";
   setTimeout(()=>isAnimating=false,900);
 }
+
 function goUp(){
   if(currentSlide===0||isAnimating||isReadingMode) return; 
   isAnimating=true; 
@@ -73,75 +67,102 @@ function goUp(){
   setTimeout(()=>isAnimating=false,900);
 }
 
-// TOGGLE LETTURA / SCOPRI
-function toggleReadingMode(){
-  if(isBtnBlocked) return;
-  isBtnBlocked=true;
+// APERTURA INFO
+function openInfo(){
+  if(isBtnBlocked || isReadingMode) return;
+  isBtnBlocked = true;
   setTimeout(()=>{isBtnBlocked=false},1000);
 
-  const toHide=[frutto1,frutto2,fragola1];
+  isReadingMode = true;
 
-  if(!isReadingMode){
-    // entra in modalità lettura
-    isReadingMode=true;
-    toHide.forEach(el=>{
-      if(!el) return;
-      el.style.transition+=" , opacity 0.4s ease";
-      el.style.opacity="0";
-      setTimeout(()=>el.style.display="none",400);
+  // Nascondi frutti e fragola
+  [frutto1, frutto2, fragola1].forEach(el=>{
+    if(!el) return;
+    el.style.transition += ", opacity 0.4s ease";
+    el.style.opacity = "0";
+    setTimeout(()=>el.style.display="none",400);
+  });
+
+  // Scala immagine
+  if(img1){
+    img1.style.animation = "none";
+    img1.style.transform = "scale(0.8) translateY(-3%)";
+  }
+
+  // Mostra info-container e cover-info
+  if(infoCont && coverInfo){
+    infoCont.style.display = "block";
+    coverInfo.style.display = "block";
+    requestAnimationFrame(()=>{
+      infoCont.style.transform = "translateY(0)";
+      coverInfo.style.transform = "translateY(0)";
+      closeIcon.style.display = "block";
     });
-    if(img1){
-      img1.style.animation = "none";
-      img1.style.filter = "drop-shadow(0px -30px 28px #00000086)";
-   
-      img1.style.transform = "scale(0.7)translateY(-10%)";
-    }
-    if(btn1){
-      btn1.style.display = "none";
-    }
-    // Mostra info-container
-    if(infoCont){
-      infoCont.style.display = "block";
-      requestAnimationFrame(()=>{
-        infoCont.style.transform = "translateY(0)";
-        coverInfo.style.transform = "translateY(0)";
-      });
-    }
-
-  } else {
-    // torna ai prodotti
-    isReadingMode=false;
-    toHide.forEach(el=>{
-      if(!el) return;
-      el.style.display="flex";
-      requestAnimationFrame(()=>el.style.opacity="1");
-    });
-    if(img1){
-      img1.style.transform = "scale(1)";
-      img1.style.animation = "floated 2s infinite ease-in-out";
-    }
-    if(btnText) btnText.textContent=originalBtnText;
-    if(btnIcon) btnIcon.style.transform="rotate(0deg)";
-
-    // Nascondi info-container in modo fluido
-    if(infoCont){
-      const hideContainer = () => {
-        infoCont.style.display = "none";
-        infoCont.removeEventListener("transitionend", hideContainer);
-      }
-      infoCont.addEventListener("transitionend", hideContainer);
-      infoCont.style.transform = "translateY(100%)";
-    }
   }
 }
 
-// CLICK BUTTON
-[btn1, btn2].forEach(btn=>{
-  btn.addEventListener("click", e=>{
-    e.preventDefault();
-    toggleReadingMode();
-  });
+// CHIUSURA INFO
+function closeInfo(){
+  if(!isReadingMode) return;
+  isReadingMode = false;
+
+  // Sparisce subito la X
+  if(closeIcon){
+    closeIcon.style.display = "none";
+  }
+
+  // Nasconde info-container e cover-info
+  if(infoCont && coverInfo){
+    const onTransition = () => {
+      infoCont.style.display = "none";
+      coverInfo.style.display = "none";
+      infoCont.removeEventListener("transitionend", onTransition);
+    };
+    infoCont.addEventListener("transitionend", onTransition);
+    infoCont.style.transform = "translateY(100%)";
+    coverInfo.style.transform = "translateY(100%)";
+  }
+
+  // Riporta immagine a scala normale e riprende animazione in modo fluido
+  if(img1){
+    img1.style.transition = "transform 0.9s cubic-bezier(.77,0,.18,1)";
+    img1.style.transform = "scale(1)";
+
+    const resumeAnimation = () => {
+      img1.style.animation = "floated 2s infinite ease-in-out";
+      img1.removeEventListener("transitionend", resumeAnimation);
+    };
+    img1.addEventListener("transitionend", resumeAnimation);
+  }
+
+  // Riporta frutti e fragola dopo 800ms
+  setTimeout(()=>{
+    [frutto1, frutto2, fragola1].forEach(el=>{
+      if(!el) return;
+      el.style.display = "flex";
+      requestAnimationFrame(()=>el.style.opacity="1");
+    });
+  }, 800);
+}
+
+// CLICK BUTTONS
+btn1.addEventListener("click", e=>{
+  e.preventDefault();
+  openInfo();
 });
+
+btn2.addEventListener("click", e=>{
+  e.preventDefault();
+  toggleReadingMode();
+});
+
+// CLICK X
+if(closeIcon){
+  closeIcon.addEventListener("click", e=>{
+    e.preventDefault();
+    closeInfo();
+  });
+}
 
 // SCROLL
 container.addEventListener("wheel",e=>{
