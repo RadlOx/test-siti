@@ -5,6 +5,8 @@ const h1_1 = document.getElementById("h1-1");
 const h1_2 = document.getElementById("h1-2");
 const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
+const infoCont = document.getElementById("info-container");
+const coverInfo = document.getElementById("cover-info");
 const frutto1 = document.getElementById("fico1");
 const frutto2 = document.getElementById("fico2");
 const frutto3 = document.getElementById("foglia1");
@@ -22,12 +24,12 @@ let isReadingMode = false;
 let isBtnBlocked = false;
 
 // TRANSIZIONI
-[h1_1,h1_2,btn1,btn2,frutto1,frutto2,frutto3,frutto4,fragola1,rotateContainer].forEach(el=>{
+[h1_1,h1_2,btn1,btn2,frutto1,frutto2,frutto3,frutto4,fragola1,rotateContainer, infoCont].forEach(el=>{
   if(!el) return;
   el.style.transition = "transform 0.9s cubic-bezier(.77,0,.18,1)";
 });
 if(img1){
-  img1.style.transition = "transform 1s ease"; // transizione morbida
+  img1.style.transition = "transform 1s ease";
   img1.style.transformOrigin = "center center";
 }
 if(btnIcon){
@@ -75,9 +77,9 @@ function goUp(){
 function toggleReadingMode(){
   if(isBtnBlocked) return;
   isBtnBlocked=true;
-  setTimeout(()=>{isBtnBlocked=false},1000); // blocco 1s tra click
+  setTimeout(()=>{isBtnBlocked=false},1000);
 
-  const toHide=[h1_1,h1_2,frutto1,frutto2,frutto3,frutto4,fragola1];
+  const toHide=[frutto1,frutto2,fragola1];
 
   if(!isReadingMode){
     // entra in modalità lettura
@@ -89,11 +91,23 @@ function toggleReadingMode(){
       setTimeout(()=>el.style.display="none",400);
     });
     if(img1){
-      img1.style.animation = "none";   // stop animazione flottante
-      img1.style.transform = "scale(0.7)"; // riduzione armoniosa
+      img1.style.animation = "none";
+      img1.style.filter = "drop-shadow(0px -30px 28px #00000086)";
+   
+      img1.style.transform = "scale(0.7)translateY(-10%)";
     }
-    if(btnText) btnText.textContent="Torna ai prodotti";
-    if(btnIcon) btnIcon.style.transform="rotate(180deg)";
+    if(btn1){
+      btn1.style.display = "none";
+    }
+    // Mostra info-container
+    if(infoCont){
+      infoCont.style.display = "block";
+      requestAnimationFrame(()=>{
+        infoCont.style.transform = "translateY(0)";
+        coverInfo.style.transform = "translateY(0)";
+      });
+    }
+
   } else {
     // torna ai prodotti
     isReadingMode=false;
@@ -103,18 +117,30 @@ function toggleReadingMode(){
       requestAnimationFrame(()=>el.style.opacity="1");
     });
     if(img1){
-      img1.style.transform = "scale(1)";      // ritorno a dimensione originale
-      img1.style.animation = "floated 2s infinite ease-in-out"; // riattiva animazione
+      img1.style.transform = "scale(1)";
+      img1.style.animation = "floated 2s infinite ease-in-out";
     }
     if(btnText) btnText.textContent=originalBtnText;
     if(btnIcon) btnIcon.style.transform="rotate(0deg)";
+
+    // Nascondi info-container in modo fluido
+    if(infoCont){
+      const hideContainer = () => {
+        infoCont.style.display = "none";
+        infoCont.removeEventListener("transitionend", hideContainer);
+      }
+      infoCont.addEventListener("transitionend", hideContainer);
+      infoCont.style.transform = "translateY(100%)";
+    }
   }
 }
 
-// EVENT CLICK
-btn1.addEventListener("click",e=>{
-  e.preventDefault();
-  toggleReadingMode();
+// CLICK BUTTON
+[btn1, btn2].forEach(btn=>{
+  btn.addEventListener("click", e=>{
+    e.preventDefault();
+    toggleReadingMode();
+  });
 });
 
 // SCROLL

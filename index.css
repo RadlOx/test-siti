@@ -19,7 +19,7 @@ body {
 #container1 {
     height: 100vh;
     width: 100%;
-    background-image: linear-gradient(45deg, #6e06065d, #ce700686, #c1c27879);
+    background-image: linear-gradient(45deg, #d8360e5d, #e67f0a86, #fbff0079);
 }
 
 #container1 a {
@@ -90,7 +90,7 @@ body {
     overflow: hidden;
     transform-origin: center;
     transition: all 1s;
-    z-index: 9;
+    z-index: 11;
 }
 
 /* Immagini */
@@ -117,6 +117,48 @@ img {
     animation: floated2 2s infinite ease-in-out;
 }
 
+/* Info container */
+#info-container {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  transform: translateY(100%);
+  background-color: #fff;
+  transition: transform 0.5s ease;
+  z-index: 10; /* alto per essere cliccabile */
+  overflow: hidden;
+}
+#info-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  z-index: 1010; /* sopra tutto */
+}
+
+#info-close:hover {
+  transform: rotate(90deg);
+  color: #ff0000;
+}
+#cover-info {
+    position: absolute;
+    top:57vh;
+    z-index: 99;
+    left: 0;
+    background-color: #ffffff;
+    width: 100%;
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+    height: 43vh;
+}
+
+
 /* Bottoni */
 #btn1, #btn2 {
     width: auto;
@@ -126,10 +168,12 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: aliceblue;
+    text-decoration: none;
     border-radius: 14px;
     font-size: 1rem;
     transition: all 1s;
-    z-index: 99;
+    z-index: 11;
 }
 
 #btn1 {
@@ -160,8 +204,40 @@ img {
     transition: all 1s;
 }
 
-#fico2 { width: 150px; top: 400px; left: 200px; transform: translateX(0%) rotate(0deg); z-index: 10; filter: blur(0.5px);}
-#fragola1 { width: 100px; top: 300px; left: 60px; transform: translateX(0%) rotate(-25deg); z-index: 9; filter: blur(0.5px);}
-#foglia1 { width: 130px; top:14%; left:-10px; transform: translateX(0%) rotate(40deg); filter: blur(3px); z-index:1;}
-#foglia2 { width: 70px; top:30%; left:320px; transform: translateX(0%) rotate(310deg); filter: blur(1px); z-index:1111;}
-#fico1 { width:150px; top:340px; left:30px; transform: translateX(-200%); z-index:10;}
+#fico2 { 
+    width: 150px; 
+    top: 400px; 
+    left: 200px; 
+    transform: translateX(0%) rotate(0deg);
+    z-index: 11; 
+    filter: blur(0.5px);
+}
+#fragola1 { 
+    width: 100px;
+     top: 300px; 
+     left: 60px; 
+     transform: translateX(0%) rotate(-25deg); 
+     z-index: 11; 
+     filter: blur(0.5px);
+}
+#foglia1 { width: 130px; 
+    top:14%; 
+    left:-10px; 
+    transform: translateX(0%) rotate(40deg); 
+    filter: blur(3px); 
+    z-index:1;
+}
+#foglia2 { 
+    width: 70px; 
+    top:30%; 
+    left:320px; 
+    transform: translateX(0%) rotate(310deg);
+    filter: blur(1px);
+    z-index:1111;}
+#fico1 { 
+    width:150px; 
+    top:340px; 
+    left:30px; 
+    transform: translateX(-200%); 
+    z-index:11s2;
+}
