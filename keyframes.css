@@ -1,12 +1,12 @@
 @keyframes floated {
     0% {
-        transform: translateY(14px);
+        transform: translateY(0px);
     }
     50% {
-        transform: translateY(4px);
+        transform: translateY(14px);
     }
     100%{
-        transform: translateY(14px);
+        transform: translateY(0px);
     }
 }
 @keyframes floated2 {
