@@ -142,7 +142,7 @@ function closeInfo(){
       el.style.display = "flex";
       requestAnimationFrame(()=>el.style.opacity="1");
     });
-  }, 800);
+  }, 500);
 }
 
 // CLICK BUTTONS
