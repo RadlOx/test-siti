@@ -48,5 +48,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // dopo 1s esegue effetto
     setTimeout(() => {
         overlay.style.animation = "popIn 0.6s ease-out forwards";
-    }, 1000);
+    }, 100);
 });
