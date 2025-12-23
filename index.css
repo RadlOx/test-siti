@@ -1,261 +1,234 @@
 * {
+    margin: 0;
     padding: 0;
-    margin: 0;
     box-sizing: border-box;
-    user-select: none;
 }
-
-body::-webkit-scrollbar { display: none; }
-
 body {
-    max-width: 100%;
-    max-height: 200vh;
-    touch-action: manipulation;
-    background-color: black;
-    overflow: hidden;
-    font-family: sans-serif;
-}
-
-#container1 {
-    height: 100vh;
-    width: 100%;
-    background-image: linear-gradient(45deg, #d8360e5d, #e67f0a86, #fbff0079);
-}
-
-#container1 a {
-    font-size: 2rem;
-    text-decoration: none;
-    color: #943636;
-}
-
-#container {
     width: 100%;
     height: 100vh;
+    background-color: #f30f9c;
     overflow: hidden;
-    touch-action: none;
-    position: relative;
-    background-image: linear-gradient(45deg, #c20e0e, #943636, #dfe236);
 }
-
-#icon-up {
-    position: absolute;
+#top-head {
     width: 100%;
+    height: 80px;
     display: flex;
-    margin: 0;
-    justify-content: center;
-    z-index: 999;
-}
-
-#icon-up a {
-    text-decoration: none;
-    color: #272727;
-}
-
-#icon-up a i {
-    background-color: #ffffff3b;
-    border-radius: 0 0 100% 100%;
-    padding: 10px 20px;
-}
-
-/* H1 */
-#h1-1, #h1-2 {
-    font-family: "Bebas Neue", "Inter", sans-serif;
-    font-size: clamp(7rem, 10vw, 8rem);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #111;
-    white-space: nowrap;
-    pointer-events: none;
+    align-items: center;
     position: absolute;
-    top: 60px;
+    justify-content: end;
+}
+#top-head #box-menu {
+    height: 60px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    cursor: pointer;
+}
+#top-head #box-menu i {
+    color: rgb(250, 234, 5);
+    font-size: 38px;
+    transition: all 1s;  
+    z-index: 99; 
+}
+
+/** MENU POP UP **/
+
+#menu-up {
+    background-color: rgb(250, 234, 5);
+    width: 100%;
+    height: 280px;
+    position: relative;
+    margin: auto;
+    border-bottom: 5px solid #00adfd;
+    z-index: 98;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease-in-out;
+
+}
+
+/* quando è aperto */
+#menu-up.open {
+    max-height: 280px; /* aumenta se il menu è più alto */
+}
+#menu-up ul {
+    list-style: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 9;
-    line-height: 100px;
-}
-
-#h1-1 { left: 40px; transform: translateX(0); }
-#h1-2 { left: 35px; transform: translateX(-110%); }
-
-#h1-1 span, #h1-2 span { color: aliceblue; }
-
-/* Rotate Container */
-#rotate-container {
-    position: relative;
-    width: 300%;
+    justify-content: center;
     height: 100%;
-    transform: rotate(0deg);
-    will-change: transform;
-    overflow: hidden;
-    transform-origin: center;
-    transition: all 1s;
-    z-index: 11;
 }
-
-/* Immagini */
-img {
-    width: 300px;
-    z-index: 999;
-    filter: drop-shadow(0px 0px 28px #00000086);
-}
-
-#img1 {
-    position: absolute;
-    top: 120px;
-    left: 50px;
-    animation: floated 2s infinite ease-in-out;
-    transition: transform 1s ease; /* <-- transizione più morbida */
-    transform-origin: center center;
-}
-
-#img2 {
-    position: absolute;
-    bottom: 110px;
-    right: 60px;
-    transform: rotate(180deg);
-    animation: floated2 2s infinite ease-in-out;
-}
-
-/* Info container */
-#info-container {
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 50vh;
-  transform: translateY(100%);
-  background-color: #201e1e;
-  transition: transform 0.1s;
-  z-index: 10; /* alto per essere cliccabile */
-  overflow: hidden;
-}
-#info-close {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  color: #333;
-  z-index: 1010; /* sopra tutto */
-}
-
-#info-close:hover {
-  transform: rotate(90deg);
-  color: #ff0000;
-}
-#cover-info {
-    position: absolute;
-    top:57vh;
-    z-index: 99;
-    left: 0;
-    background-color: #201e1e;
-    width: 100%;
-    transform: translateY(100%);
-    transition: transform 0.5s;
-    height: 43vh;
-}
-#content-cover {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-#content-cover i {
-    position: absolute;
-    top: -40px;
-    right: 20px;
-    display: none;
-}
-.content1 {
-    background-color: #943636;
+#menu-up ul li {
+    margin: 15px 0;
+    font-size: 24px;
+    font-weight: bold;
     width: 40%;
-    height: 150px;
-    position: relative;
-    margin: 10px;
-    border-radius: 10px;
-}
-/* Bottoni */
-#btn1, #btn2 {
-    width: auto;
-    height: 50px;
-    position: absolute;
-    padding: 20px 20px 20px 7px;
+    height: 60px;
     display: flex;
+    margin: 15px;
     align-items: center;
     justify-content: center;
-    color: aliceblue;
+    border-radius: 8px
+}
+#menu-up ul li a {
     text-decoration: none;
-    border-radius: 14px;
-    font-size: 1rem;
-    transition: all 1s;
-    z-index: 11;
+    color: white;
+    font-family: sans-serif;
+    font-size: 18px;
 }
 
-#btn1 {
-    background-color: #640a0a63;
-    top: 80%;
-    left: 30%;
-    box-shadow: 0 0 100px rgba(241, 19, 11, 0.733);
+#overlay-box {
+    width: 100%;
+    height: 100vh;
+    position: relative;
 }
-
-#btn1 i {
-    margin: 0 10px;
-    transition: transform 0.4s ease;
-    display: inline-block;
-}
-
-#btn2 {
-    background-image: linear-gradient(45deg, #6e06065d, #ce700686, #c1c27879);
-    top: 80%;
-    left: 20%;
-    border-left: 20px solid rgba(255, 51, 0, 0.288);
-    box-shadow: 0 0 100px rgb(241, 180, 11);
-    transform: translateY(400%);
-}
-
-/* Frutti */
-#fico1, #fico2, #fragola1, #foglia1, #foglia2 {
+#overlay-box img {
     position: absolute;
-    transition: all 1s;
+    display: inline-block;       /* utile se è un div o immagine */
+
+}
+#overlay {
+    width: 100%;
+    top: 120px;
+    z-index: 1;
+}
+#overlay1 {
+    width: 80px;
+    top: 120px;
+    left: 30px;
+    animation: floatAnim1 3s ease-in-out infinite;
+}
+#overlay2 {
+    width: 80px;
+    bottom: 10px;
+    z-index: 2;
+    left: 130px;
+    animation: floatAnim2 2s ease-in-out infinite;
+}
+#overlay3 {
+    width: 80px;
+    bottom: 242px;
+    left: 100px;
+    animation: floatAnim2 3s ease-in-out infinite;
+    z-index: 2;
+}
+#overlay4 {
+    width: 80px;
+    bottom: 150px;
+    right: 10px;
+    animation: floatAnim1 2s ease-in-out infinite;
+}
+#overlay5 {
+    width: 80px;
+    top: 190px;
+    right: 60px;
+    animation: floatAnim1 2s ease-in-out infinite;
+}
+#overlay6 {
+    width: 80px;
+    top: 70%;
+    left: -10%;
+    animation: floatAnim2 3s ease-in-out infinite;
+}
+#overlay7 {
+    width: 80px;
+    top: -3%;
+    left: 40%;
+    animation: floatAnim2 3s ease-in-out infinite;
+}
+#under-box {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 20%;
+    left: 0%;
+    width: 100%;
+    z-index: 1;
+}
+#under-box i {
+    margin: -8px auto;
+    color: rgb(241, 208, 19);
+}
+#under-box i:nth-child(1) {
+    font-size: 2rem;
+    color: rgb(241, 208, 19);
+    animation: animated-down1 2s infinite ease;
+}
+#under-box i:nth-child(2) {
+    font-size: 2rem;
+    color: rgb(130, 213, 238);
+    animation: animated-down2 2s infinite ease;
+}
+#under-box i:nth-child(3) {
+    font-size:2rem;
+    color: rgb(130, 213, 238);
+    animation: animated-down3 2s infinite ease;
+}
+@keyframes floatAnim1 {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px)rotate(7deg); /* si alza di 7px */
+    }
+    100% {
+        transform: translateY(0px);  /* torna alla posizione originale */
+    }
 }
 
-#fico2 { 
-    width: 150px; 
-    top: 400px; 
-    left: 200px; 
-    transform: translateX(0%) rotate(0deg);
-    z-index: 11; 
-    filter: blur(0.5px);
+@keyframes floatAnim2 {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px)rotate(-7deg); /* si alza di 7px */
+    }
+    100% {
+        transform: translateY(0px);  /* torna alla posizione originale */
+    }
 }
-#fragola1 { 
-    width: 100px;
-     top: 300px; 
-     left: 60px; 
-     transform: translateX(0%) rotate(-25deg); 
-     z-index: 11; 
-     filter: blur(0.5px);
+
+@keyframes animated-down1 {
+    0% {
+        transform: scale(1.3);
+        color: rgb(130, 213, 238);
+    }
+    50% {
+        transform: scale(1.1);
+        color: rgb(241, 208, 19);
+    }
+    100% {
+        transform: scale(1.3);
+        color: rgb(241, 208, 19);
+    }
 }
-#foglia1 { width: 130px; 
-    top:14%; 
-    left:-10px; 
-    transform: translateX(0%) rotate(40deg); 
-    filter: blur(3px); 
-    z-index:1;
+@keyframes animated-down2 {
+    0% {
+        transform: scale(1.3);
+        color: rgb(241, 208, 19);
+    }
+    50% {
+        transform: scale(1.1);
+        color: rgb(130, 213, 238);
+    }
+    100% {
+        transform: scale(1.3);
+        color: rgb(241, 208, 19);
+    }
 }
-#foglia2 { 
-    width: 70px; 
-    top:27%; 
-    left:320px; 
-    transform: translateX(0%) rotate(310deg);
-    filter: blur(1px);
-    z-index:111;}
-#fico1 { 
-    width:150px; 
-    top:340px; 
-    left:30px; 
-    transform: translateX(-200%); 
-    z-index:112;
+@keyframes animated-down3 {
+    0% {
+        transform: scale(1.3);
+        color: rgb(241, 208, 19);
+    }
+    50% {
+        transform: scale(1.1);
+        color:rgb(241, 208, 19);
+    } 
+    100% {
+        transform: scale(1.3);
+        color: rgb(130, 213, 238);
+    }
 }
